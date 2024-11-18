@@ -1,0 +1,24 @@
+<!-- views/index.ejs -->
+
+<div class="chat-container">
+    <div class="chat-box" id="chat-box">
+        <% if (messages.length === 0) { %>
+            <p class="bot-message">Olá! Como posso ajudar você hoje?</p>
+        <% } else { %>
+            <% messages.forEach(message => { %>
+                <% if (message.sender === 'user') { %>
+                    <p class="user-message"><strong>Você:</strong> <%= message.text %></p>
+                <% } else { %>
+                    <p class="bot-message"><strong>Bot:</strong> <%= message.text %></p>
+                <% } %>
+            <% }) %>
+        <% } %>
+    </div>
+    <div id="loading-indicator" class="loading-indicator" style="display: none;">
+        Enviando...
+    </div>
+    <form id="chat-form" class="chat-form">
+        <input type="text" name="message" id="message-input" placeholder="Digite sua mensagem..." required>
+        <button type="submit">Enviar</button>
+    </form>
+</div>
